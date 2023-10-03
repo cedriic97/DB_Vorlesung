@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <title>API-Endpunkte</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Verfügbare API-Endpunkte</h1>
+        <ul id="endpointList"></ul>
+
+        <script>
+            fetch('/api/tables')
+            .then(response => response.json())
+            .then(endpoints => {
+                let endpointList = document.getElementById('endpointList');
+                endpoints.forEach((endpoint, index) => {
+                    let listItem = document.createElement('li');
+                    
+                    let info = document.createElement('span');
+                    info.textContent = `${endpoint.method}: ${endpoint.path}`;
+                    
+                    // Only enable button for GET requests
+                    if(endpoint.method === "GET") {
+                        let button = document.createElement('button');
+                        button.textContent = 'Open';
+                        button.style.marginLeft = '10px';
+                        button.onclick = () => window.location = endpoint.path;
+                        listItem.appendChild(info);
+                        listItem.appendChild(button);
+                    } else {
+                        listItem.appendChild(info);
+                    }
+
+                    endpointList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching endpoints:', error);
+            });
+        </script>
+    </div>
+</body>
+</html>

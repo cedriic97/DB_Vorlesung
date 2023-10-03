@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Daten Anzeige</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Starter Webseite</h1>
+        <h3>Vorlesung 6</h3>
+        <p>
+            Nutzen Sie das untenstehende Textfeld, um eine benutzerdefinierte SQL-Abfrage einzugeben.
+            Nachdem Sie Ihre Abfrage eingegeben haben, klicken Sie auf "Abfrage ausführen", um die Daten anzuzeigen.
+        </p>
+
+        <!-- Benutzerdefinierte Abfragebereich -->
+        <div>
+            <label for="customQuery">Benutzerdefinierte SQL Abfrage:</label>
+            <textarea id="customQuery" rows="6"></textarea>
+            <button onclick="executeCustomQuery()">Abfrage ausführen</button>
+        </div>
+
+        <table>
+            <thead id="datenTabelleHead">
+            </thead>
+            <tbody id="datenTabelle">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script> <!-- Unsere lokale JS-Datei -->
+
+</body>
+</html>
